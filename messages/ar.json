@@ -1,0 +1,51 @@
+{
+  "Header": {
+    "head": "متجر الكتروني ",
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "categories": "الأقسام",
+    "about" :"حول",
+    "contact" : "تواصل معنا",
+    "featuredProducts" :"المنتجات المميزة",
+    "featuredcategories": "الاقسام  المميزه",
+    "viewProduct" :"عرض المنتج"
+
+    
+  },
+    "Search": {
+    "placeholder": "ابحث عن المنتجات...",
+    "aria": "ابحث عن المنتجات"
+  },
+  "Footer": {
+    "description": "تجربة تجارة إلكترونية حديثة متعددة اللغات.",
+    "linksTitle": "روابط سريعة",
+    "about": "حول",
+    "contact": "اتصل بنا",
+    "products": "المنتجات",
+    "rights": "جميع الحقوق محفوظة."
+  },
+
+  "Home": {
+    "title": "تسوق بذكاء، عش أفضل",
+    "subtitle": "اكتشف منتجات ذات جودة بأفضل الأسعار.",
+    "shopNow": "تسوق الآن",
+    "contact": "تواصل معنا",
+    "featuredProducts": "المنتجات المميزة",
+    "viewProduct": "عرض المنتج"
+  },
+  "Categories": {
+    "featured": "الأقسام المميزة",
+    "apparel": "الملابس",
+    "electronics": "الإلكترونيات",
+    "accessories": "الإكسسوارات"
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "submitLogin": "تأكيد تسجيل الدخول",
+    "submitSignup": "تأكيد إنشاء الحساب"
+  }
+}

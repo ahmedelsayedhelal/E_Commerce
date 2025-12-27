@@ -1,0 +1,48 @@
+{
+  "Header": {
+    "head": "E-shop",
+    "home": "Home",
+    "products": "Products",
+    "categories": "Categories",
+    "about": "About",
+    "contact": "Contact us",
+    "featuredProducts": "Featured Products",
+    "featuredcategories": "Featured Categories",
+    "viewProduct": "View Product"
+  },
+  "Search": {
+    "placeholder": "Search products...",
+    "aria": "Search products"
+  },
+  "Footer": {
+    "description": "A modern multi-language e-commerce experience.",
+    "linksTitle": "Quick Links",
+    "about": "About",
+    "contact": "Contact",
+    "products": "Products",
+    "rights": "All rights reserved."
+  },
+  "Home": {
+    "title": "Shop Smarter, Live Better",
+    "subtitle": "Discover quality products at the best prices.",
+    "shopNow": "Shop Now",
+    "contact": "Contact us",
+    "featuredProducts": "Featured Products",
+    "viewProduct": "View Product"
+  },
+  "Categories": {
+    "featured": "Featured Categories",
+    "apparel": "Apparel",
+    "electronics": "Electronics",
+    "accessories": "Accessories"
+  },
+  "auth": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "submitLogin": "Submit Login",
+    "submitSignup": "Submit Sign Up"
+  }
+}
