@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+# 🛒 E-Commerce Mini Site (Next.js)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+A modern multi-language e-commerce mini site built with **Next.js App Router**, focusing on **SEO, performance, accessibility**, and clean architecture.
+
+---
+
+# Tech Stack
+
+* Framework: Next.js (App Router)
+* Language: TypeScript
+* Styling: Tailwind CSS
+* State Management: Zustand (with persistence)
+* Forms & Validation: React Hook Form + Zod
+* Internationalization: next-intl (EN / AR with RTL support)
+* SEO: Metadata API, Open Graph, Twitter Cards, JSON-LD
+* Deployment: Vercel
+
+---
+
+##  Features
+
+###  Core Features
+
+* Product listing & product details pages
+* Cart & wishlist functionality
+* Client-side state management
+* Responsive UI (mobile-first)
+* Dark / light theme support
+
+### 🌐 Internationalization
+
+* English & Arabic support
+* RTL layout for Arabic
+* Locale-based routing (`/en`, `/ar`)
+* Translated metadata & content
+
+### 🔍 SEO Optimizations
+
+* Dynamic metadata per page
+* Open Graph & Twitter Card meta tags
+* JSON-LD structured data:
+
+  * Product
+  * BreadcrumbList
+* Canonical & `hreflang` alternate links
+* Sitemap & robots.txt
+
+ Accessibility
+
+* Skip navigation link
+* Fully clickable product cards 
+* Semantic HTML & proper alt texts
+
+Performance
+
+* Next.js Image optimization
+* Lazy loading 
+* Loading skeletons using `loading.tsx`
+
+
+
+---
+
+##  Testing
+
+* Unit testing planned for cart logic (Zustand store)
+* Testing framework: **Vitest**
+
+
+
+---
+# Lighthouse Scores
+
+# Desktop
+[Lighthouse Desktop](./docs/lighthouse/lighthouse-desktop.png)
+
+### Mobile
+[Lighthouse Mobile](./docs/lighthouse/lighthouse-mobile.png)
+
+##  Architectural Decisions
+
+* **App Router** used for better SEO and streaming support
+* **Zustand** chosen for simplicity and performance
+* **next-intl** for scalable i18n with proper routing
+* **JSON-LD** added manually for full SEO control
+* Client components used only when necessary
+
+
+
+
+```
+http://localhost:3000/en
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌐 Live Demo
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🔗 **Vercel Deployment:**
+[https://ecommercetask-tawny.vercel.app/en]
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+👤 Author
 
-## Deploy on Vercel
+**Ahmed Elsayed**
+Frontend Developer (Next.js / React)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+

@@ -24,7 +24,7 @@ export function Footer() {
                 aria-label="GitHub"
                 className="text-muted-foreground hover:text-foreground transition"
               >
-                <Github className="h-5 w-5" />
+                <Github className="h-5 w-5 d" />
               </a>
 
               <a
