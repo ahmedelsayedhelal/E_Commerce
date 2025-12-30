@@ -13,7 +13,7 @@ async function getProduct(id: string) {
   
   
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SITE_URL}/api/products/${id}`,
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/product/${id}`,
    
   );
 

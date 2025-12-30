@@ -81,7 +81,10 @@
     "submiting" :"message sent succssefuly",
     "password" : "Password must be at least 6 characters",
     "longname" : "You musn't exceed 12 letters ",
-    "submit" : "Submit"
+    "submit" : "Submit",
+    "namee" : "Name",
+    "emaill" : "Email",
+    "messagee":"Message"
 
   },
   "About":{

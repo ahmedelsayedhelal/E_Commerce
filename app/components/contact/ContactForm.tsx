@@ -7,11 +7,9 @@ import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
-type Props = {
-  locale: string;
-};
 
-export function ContactForm({ locale }: Props) {
+
+export function ContactForm() {
   const t = useTranslations("contactform")
   const [isSubmitting, setIsSubmitting] = useState(false);
   const schema = z.object({
@@ -59,7 +57,7 @@ export function ContactForm({ locale }: Props) {
       <div>
         <input
           {...register("name")}
-          placeholder={locale === "ar" ? "الاسم" : "Name"}
+          placeholder={t("namee")}
           className={`w-full border px-4 py-2 rounded ${
             errors.name ? "border-red-500" : ""
           }`}
@@ -74,7 +72,7 @@ export function ContactForm({ locale }: Props) {
       <div>
         <input
           {...register("email")}
-          placeholder="Email"
+          placeholder={t("emaill")}
           className={`w-full border px-4 py-2 rounded ${
             errors.email ? "border-red-500" : ""
           }`}
@@ -89,7 +87,7 @@ export function ContactForm({ locale }: Props) {
       <div>
         <textarea
           {...register("message")}
-          placeholder={locale === "ar" ? "رسالتك" : "Your message"}
+          placeholder={t("messagee")}
           className={`w-full border px-4 py-2 rounded min-h-30 ${
             errors.message ? "border-red-500" : ""
           }`}

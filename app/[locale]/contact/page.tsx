@@ -1,11 +1,11 @@
 import { ContactForm } from "@/app/components/contact/ContactForm";
 import { useTranslations } from "next-intl";
-import {use} from "react";
 
 
 
-export default function ContactPage({ params }: {params: Promise <{ locale: string }>}) {
-  const { locale } = use (params);
+
+export default function ContactPage() {
+  
   const t = useTranslations("contact")
 
   return (
@@ -14,7 +14,7 @@ export default function ContactPage({ params }: {params: Promise <{ locale: stri
         {t("contact")}
       </h1>
 
-      <ContactForm locale={locale} />
+      <ContactForm  />
     </section>
   );
 }

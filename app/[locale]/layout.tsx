@@ -81,9 +81,15 @@ export default async function LocaleLayout({
       <body className="min-h-screen flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextIntlClientProvider messages={messages}>
+            <a
+           href="#main-content" className=" sr-only  focus:not-sr-only focus:fixed focus:top-4 focus:left-4  z-50 bg-primary text-white px-4 py-2   rounded "
+             >
+            Skip to main content
+            </a>
+
             <Header />
             <Toaster position="bottom-right" richColors closeButton />
-            <main className="flex-1">{children}</main>
+            <main id="main-content" className="flex-1">{children}</main>
             <Footer />
           </NextIntlClientProvider>
         </ThemeProvider>
