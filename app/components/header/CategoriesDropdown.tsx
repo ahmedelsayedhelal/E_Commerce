@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { categories } from "@/data/categories";
 import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
+import type { Category } from "../types/category";
 
 type Props = {
   locale: string;
@@ -10,12 +11,25 @@ type Props = {
 
 export function CategoriesDropdown({ locale }: Props) {
   const t = useTranslations("Header");
+  const c = useTranslations("Categories")
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    async function fetchCategories() {
+      const res = await fetch("/api/categories");
+      if (!res.ok) return;
+
+      const data = await res.json();
+      setCategories(data.categories);
+    }
+
+    fetchCategories();
+  }, []);
 
   return (
     <div className="relative group">
       <button
         className="
-          
           hover:text-primary
           transition
           relative
@@ -32,7 +46,6 @@ export function CategoriesDropdown({ locale }: Props) {
         {t("categories")}
       </button>
 
-    
       <div
         className="
           absolute
@@ -70,7 +83,7 @@ export function CategoriesDropdown({ locale }: Props) {
                   hover:text-primary
                 "
               >
-                {locale === "ar" ? cat.name_ar : cat.name_en}
+                {c(`${cat.slug}`)}
               </Link>
             </li>
           ))}

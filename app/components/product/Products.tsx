@@ -3,10 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import type { Product } from "@/data/products";
-import type { Category } from "@/data/categories";
+import type { Product } from "@/app/components/types/product";
+import type { Category } from "@/app/components/types/category";
 import { useSearchStore } from "@/store/useSearchStore";
 import { SearchInput } from "../header/SearchInput";
+import { useTranslations } from "next-intl";
 
 type Props = {
   products: Product[];
@@ -33,24 +34,25 @@ export default function ProductsClient({
 
     return matchesCategory && matchesSearch;
   });
+  const t = useTranslations("Products")
 
   return (
     <>
       <h1 className="mb-8 text-3xl font-bold px-4">
-        {locale === "ar" ? "كل المنتجات" : "All Products"}
+        {t("allproducts")}
       </h1>
 
-      <div className="mb-8 flex flex-wrap gap-3 pl-4">
+      <div className="mb-8 flex flex-wrap gap-3 px-4 pl-4">
         <button
           onClick={() => setActiveCategory(null)}
           className={`rounded-md border px-4 py-2 text-sm transition ${
             activeCategory === null ? "bg-muted" : "hover:bg-muted"
           }`}
         >
-          {locale === "ar" ? "الكل" : "All"}
+          {t("all")}
         </button>
 
-        {categories.map((cat) => (
+           {categories.map((cat) => (
           <button
             key={cat.slug}
             onClick={() => setActiveCategory(cat.slug)}
@@ -60,13 +62,13 @@ export default function ProductsClient({
                 : "hover:bg-muted"
             }`}
           >
-            {locale === "ar" ? cat.name_ar : cat.name_en}
+            {t(`categories.${cat.slug}`)}
           </button>
         ))}
-        <SearchInput locale="locale"/>
+        <SearchInput />
       </div>
 
-      <div className="grid gap-6 md:grid-cols-3 text-center md:px-4 items-center">
+      <div className="grid gap-6 md:grid-cols-3 text-center px-4 items-center">
         {filteredProducts.map((product) => (
           <Link
             key={product.id}
@@ -78,6 +80,7 @@ export default function ProductsClient({
                 src={product.image}
                 alt={locale === "ar" ? product.name_ar : product.name_en}
                 fill
+                loading="lazy"
                 className="object-contain rounded-md"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
@@ -96,9 +99,7 @@ export default function ProductsClient({
 
       {filteredProducts.length === 0 && (
         <p className="mt-12 text-center text-muted-foreground">
-          {locale === "ar"
-            ? "لا توجد منتجات مطابقة"
-            : "No matching products"}
+          {t("nomatching")}
         </p>
       )}
     </>

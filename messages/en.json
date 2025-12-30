@@ -27,7 +27,6 @@
     "subtitle": "Discover quality products at the best prices.",
     "shopNow": "Shop Now",
     "contact": "Contact us",
-    "featuredProducts": "Featured Products",
     "viewProduct": "View Product"
   },
   "Categories": {
@@ -36,13 +35,109 @@
     "electronics": "Electronics",
     "accessories": "Accessories"
   },
+  "Products" :{
+  "featured" : "Featured Products",
+    "view": "View Product",
+    "sort": {
+      "label": "Sort:",
+      "lowToHigh": "Price: Low to High",
+      "highToLow": "Price: High to Low"
+    },
+    "allproducts" : "All Products",
+    "all" : "All",
+    "nomatching" : "No matching Products",
+     "imageAlt": "Image of {name}",
+    "categories": {
+      "apparel": "Apparel",
+      "electronics": "Electronics",
+      "accessories": "Accessories"
+    
+  },
+  "relatedproducts" : "Related Products",
+  "outofstock" : "Out of stock" ,
+  "added" : "Added",
+  "addtocart"  : "Add to cart",
+  "quantity" : "quantity"
+      
+},
   "auth": {
     "login": "Login",
     "signup": "Sign Up",
     "email": "Email",
     "password": "Password",
+    "name":"Name",
     "confirmPassword": "Confirm Password",
     "submitLogin": "Submit Login",
-    "submitSignup": "Submit Sign Up"
+    "submitSignup": "Submit Sign Up",
+    "logout":"logout"
+  },
+  "contact" :{
+    "contact" : "Contact us"
+  },
+  "contactform":{
+    "name" : "Name is too short",
+    "email" :"Invaild Email",
+    "message" : "Message must be at least 10 characters",
+    "submiting" :"message sent succssefuly",
+    "password" : "Password must be at least 6 characters",
+    "longname" : "You musn't exceed 12 letters ",
+    "submit" : "Submit"
+
+  },
+  "About":{
+    "Aboutus" : "About Us",
+    "firstdescription" : "This is a demo e-commerce project built with Next.js to showcase modern frontend and backend development skills.",
+    "seconddescription" : "The project focuses on best practices such as clean architecture, multi-language support, and an optimized user experience.",
+    "thirddescription" : "It is designed to simulate a real e-commerce experience, including cart and wishlist management, form validation, and user flows."
+  },
+    "Wishlist": {
+    "title": "Wishlist",
+    "empty": "Your wishlist is empty",
+    "back": "Back to home",
+    "view": "View product",
+    "remove": "Remove"
+  },
+    "Cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "back": "Back to home",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout",
+    "increase": "Increase quantity",
+    "decrease": "Decrease quantity"
+    
+  },
+  "checkoutformvalidation":{
+    "name" : "Name is too short",
+    "email" :"Invaild Email",
+    "address" : "Address to short"
+  },
+  "checkout" :{
+    "name" : "Full name",
+    "email" : "Email",
+    "address" : "Address",
+    "next" : "next",
+    "cartempty" : "cart is empty",
+    "checkout" : "Checkout",
+    "Shoppinginfo" : "Shopping info",
+    "ordersummary" : "Order summary",
+    "total" : "Total",
+    "back" : "Back to home"
+    ,"confirmorder" : "Confirm Order",
+    "ordersucces" : "Order placed successfully ",
+    "thank" : "Thank you for shopping with us"
+    
+  },
+  "search":{
+    "search": " Search here "
+  },
+  "metadatahero":{
+    "title" : "Home",
+    "description":"Shop the latest products at the best prices"
+  },
+  "metadatalayout":{
+    "title" : ""
   }
-}
+
+  }

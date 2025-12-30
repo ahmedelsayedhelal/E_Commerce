@@ -1,0 +1,79 @@
+[
+  {
+    "id": "1",
+    "name_en": "Basic Tee",
+    "name_ar": "تي شيرت أساسي",
+    "description_en": "Soft and comfortable cotton t-shirt suitable for everyday wear.",
+    "description_ar": "تي شيرت قطني ناعم ومريح مناسب للاستخدام اليومي.",
+    "price": 19.99,
+    "category": "apparel",
+    "image": "/images/6613cb75a323b407bd014d6e-kaoayi-kids-clothing-for-boy-spring.jpg",
+    "inStock": true
+  },
+  {
+    "id": "2",
+    "name_en": "Running Shoes",
+    "name_ar": "حذاء جري",
+    "description_en": "Lightweight running shoes designed for comfort and performance.",
+    "description_ar": "حذاء جري خفيف الوزن مصمم للراحة والأداء العالي.",
+    "price": 89.99,
+    "category": "apparel",
+    "image": "/images/FOO-ACTIVN-PORT20258945--BLK-WHIT_1.webp",
+    "inStock": true
+  },
+  {
+    "id": "3",
+    "name_en": "Gold Necklace",
+    "name_ar": "سلسلة ذهبية",
+    "description_en": "Elegant gold necklace suitable for special occasions.",
+    "description_ar": "سلسلة ذهبية أنيقة مناسبة للمناسبات الخاصة.",
+    "price": 129.99,
+    "category": "accessories",
+    "image": "/images/photo-1606760227091-3dd870d97f1d.jpg",
+    "inStock": true
+  },
+  {
+    "id": "4",
+    "name_en": "Running Shoes Pro",
+    "name_ar": "حذاء جري احترافي",
+    "description_en": "High-performance running shoes with enhanced cushioning.",
+    "description_ar": "حذاء جري احترافي مع دعم وامتصاص صدمات أفضل.",
+    "price": 99.99,
+    "category": "apparel",
+    "image": "/images/FOO-ACTIVN-PORT20258945--BLK-WHIT_1.webp",
+    "inStock": true
+  },
+  {
+    "id": "5",
+    "name_en": "Ring",
+    "name_ar": "خاتم",
+    "description_en": "Stylish ring with a modern minimalist design.",
+    "description_ar": "خاتم أنيق بتصميم عصري وبسيط.",
+    "price": 79.99,
+    "category": "accessories",
+    "image": "/images/shopping.webp",
+    "inStock": true
+  },
+  {
+    "id": "6",
+    "name_en": "Mobile Phone",
+    "name_ar": "هاتف محمول",
+    "description_en": "Smartphone with a high-resolution display and fast performance.",
+    "description_ar": "هاتف ذكي بشاشة عالية الدقة وأداء سريع.",
+    "price": 499.99,
+    "category": "electronics",
+    "image": "/images/representation-user-experience-interface-design.jpg",
+    "inStock": true
+  },
+  {
+    "id": "7",
+    "name_en": "Laptop",
+    "name_ar": "لابتوب",
+    "description_en": "Powerful laptop suitable for work, study, and everyday tasks.",
+    "description_ar": "لابتوب قوي مناسب للعمل والدراسة والمهام اليومية.",
+    "price": 899.99,
+    "category": "electronics",
+    "image": "/images/technology-hologram-indoors.jpg",
+    "inStock": true
+  }
+]

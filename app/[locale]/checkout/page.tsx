@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useShopStore } from "@/store/useShopStore";
+import { useTranslations } from "next-intl";
 
 export default function CheckoutPage({
   params,
@@ -21,15 +22,17 @@ export default function CheckoutPage({
     "shipping"
   );
   const [shippingData, setShippingData] = useState<FormData | null >(null);
+  const t = useTranslations("checkoutformvalidation");
+  const c = useTranslations("checkout")
 
   const schema = z.object({
-    name: z.string().min(3, locale === "ar" ? "الاسم قصير" : "Name too short"),
+    name: z.string().min(3, t("name")),
     email: z
       .string()
-      .email(locale === "ar" ? "بريد غير صالح" : "Invalid email"),
+      .email(t("email")),
     address: z
       .string()
-      .min(5, locale === "ar" ? "العنوان قصير" : "Address too short"),
+      .min(5, t("address")),
   });
 
   type FormData = z.infer<typeof schema>;
@@ -63,18 +66,16 @@ export default function CheckoutPage({
     return (
       <div className="py-20 text-center">
         <h1 className="text-2xl font-semibold">
-          {locale === "ar"
-            ? "لا يوجد منتجات في السلة"
-            : "Your cart is empty"}
+          {c("cartempty")}
         </h1>
       </div>
     );
   }
 
   return (
-    <section className="max-w-3xl mx-auto py-16">
+    <section className="max-w-3xl mx-auto py-16 px-4">
       <h1 className="mb-8 text-3xl font-bold">
-        {locale === "ar" ? "إتمام الشراء" : "Checkout"}
+        {c("checkout")}
       </h1>
 
       {step === "shipping" && (
@@ -85,7 +86,7 @@ export default function CheckoutPage({
           <div>
             <input
               {...register("name")}
-              placeholder={locale === "ar" ? "الاسم الكامل" : "Full name"}
+              placeholder={c("name")}
               className="w-full border rounded px-4 py-2"
             />
             {errors.name && (
@@ -96,7 +97,7 @@ export default function CheckoutPage({
           <div>
             <input
               {...register("email")}
-              placeholder={locale === "ar" ? "البريد الإلكتروني" : "Email"}
+              placeholder={c("email")}
               className="w-full border rounded px-4 py-2"
             />
             {errors.email && (
@@ -107,7 +108,7 @@ export default function CheckoutPage({
           <div>
             <input
               {...register("address")}
-              placeholder={locale === "ar" ? "العنوان" : "Address"}
+              placeholder={c("address")}
               className="w-full border rounded px-4 py-2"
             />
             {errors.address && (
@@ -121,7 +122,7 @@ export default function CheckoutPage({
             type="submit"
             className="rounded-md bg-primary px-6 py-3 text-white"
           >
-            {locale === "ar" ? "التالي" : "Next"}
+            {c("next")}
           </button>
         </form>
       )}
@@ -130,7 +131,7 @@ export default function CheckoutPage({
         <div className="space-y-6">
           <div className="border rounded p-4">
             <h2 className="font-semibold mb-2">
-              {locale === "ar" ? "بيانات الشحن" : "Shipping Info"}
+              {c("Shoppinginfo")}
             </h2>
             <p>{shippingData?.name}</p>
             <p>{shippingData?.email}</p>
@@ -139,7 +140,7 @@ export default function CheckoutPage({
 
           <div className="border rounded p-4">
             <h2 className="font-semibold mb-2">
-              {locale === "ar" ? "الطلب" : "Order Summary"}
+              {c("ordersummary")}
             </h2>
 
             {cart.map((item) => (
@@ -156,7 +157,7 @@ export default function CheckoutPage({
             ))}
 
             <p className="mt-4 font-semibold">
-              {locale === "ar" ? "الإجمالي:" : "Total:"} $
+              {c("total")} $
               {subtotal.toFixed(2)}
             </p>
           </div>
@@ -166,14 +167,14 @@ export default function CheckoutPage({
               onClick={() => setStep("shipping")}
               className="border px-4 py-2 rounded"
             >
-              {locale === "ar" ? "رجوع" : "Back"}
+              {c("back")}
             </button>
 
             <button
               onClick={confirmOrder}
               className="bg-primary text-white px-6 py-2 rounded"
             >
-              {locale === "ar" ? "تأكيد الطلب" : "Confirm Order"}
+              {c("confirmorder")}
             </button>
           </div>
         </div>
@@ -182,14 +183,11 @@ export default function CheckoutPage({
       {step === "success" && (
         <div className="py-20 text-center">
           <h2 className="text-2xl font-semibold mb-4">
-            {locale === "ar"
-              ? "تم تأكيد الطلب بنجاح 🎉"
-              : "Order placed successfully 🎉"}
+            {c("ordersucces")}
           </h2>
           <p className="text-muted-foreground">
-            {locale === "ar"
-              ? "شكراً لتسوقك معنا"
-              : "Thank you for shopping with us"}
+            { c("thank")
+              }
           </p>
         </div>
       )}

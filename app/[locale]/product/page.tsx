@@ -1,32 +1,64 @@
-import { products } from "@/data/products";
-import { categories } from "@/data/categories";
 import ProductsClient from "@/app/components/product/Products";
 import type { Metadata } from "next";
+import type { Product } from "@/app/components/types/product";
+import type { Category } from "@/app/components/types/category";
 
+type PageProps = {
+  params: Promise<{ locale: string }>;
+};
 
 export async function generateMetadata(
-  { params }: { params: Promise <{ locale: string }> }
+  { params }: PageProps
 ): Promise<Metadata> {
-  const {locale} = await params
+  const { locale } = await params;
   const isAr = locale === "ar";
 
   return {
     title: isAr ? "المنتجات" : "Products",
     description: isAr
       ? "تصفح جميع المنتجات المتاحة في المتجر"
-      : "Browse all available products in our store",
+      : "Browse all available products in our store"
   };
 }
 
+async function getProducts(): Promise<Product[]> {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/products`,
+    { cache: "no-store" }
+  );
 
-export default async function ProductsPage({
-  params,
-}: {
-  params: Promise <{ locale: string }>;
-}) {
-    const {locale}= await params
+  if (!res.ok) {
+    throw new Error("Failed to fetch products");
+  }
+
+  const data = await res.json();
+  return data.products;
+}
+
+async function getCategories(): Promise<Category[]> {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/categories`,
+    { cache: "no-store" }
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch categories");
+  }
+
+  const data = await res.json();
+  return data.categories;
+}
+
+export default async function ProductsPage({ params }: PageProps) {
+  const { locale } = await params;
+
+  const [products, categories] = await Promise.all([
+    getProducts(),
+    getCategories()
+  ]);
+
   return (
-    <section className="max-w-6xl mx-auto py-16">
+    <section className="mx-auto max-w-6xl py-16">
       <ProductsClient
         products={products}
         categories={categories}

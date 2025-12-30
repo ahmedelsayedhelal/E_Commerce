@@ -2,15 +2,19 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useShopStore } from "@/store/useShopStore";
-import {use} from "react";
+import {use} from "react"
 
-export default function CartPage({
-  params,
-}: {
-  params: Promise < { locale: string }>;
-}) {
+type Props = {
+  params: Promise < {
+    locale: string;
+  }>;
+};
+
+export default function CartPage({ params }: Props) {
   const { locale } = use(params);
+  const t = useTranslations("Cart");
 
   const cart = useShopStore((s) => s.cart);
   const removeFromCart = useShopStore((s) => s.removeFromCart);
@@ -24,26 +28,24 @@ export default function CartPage({
   if (cart.length === 0) {
     return (
       <div className="py-20 text-center md:min-h-screen">
-        <h1 className="text-2xl font-semibold mb-4">
-          {locale === "ar" ? "السلة فارغة" : "Your cart is empty"}
+        <h1 className="mb-4 text-2xl font-semibold">
+          {t("empty")}
         </h1>
 
         <Link
           href={`/${locale}`}
           className="text-primary hover:underline"
         >
-          {locale === "ar"
-            ? "العودة للصفحة الرئيسية"
-            : "Back to home"}
+          {t("back")}
         </Link>
       </div>
     );
   }
 
   return (
-    <section className="max-w-4xl mx-auto py-16">
-      <h1 className="mb-8 text-3xl font-bold px-4">
-        {locale === "ar" ? "سلة التسوق" : "Shopping Cart"}
+    <section className="mx-auto max-w-4xl py-16 px-4">
+      <h1 className="mb-8 px-4 text-3xl font-bold">
+        {t("title")}
       </h1>
 
       <div className="space-y-6">
@@ -54,15 +56,23 @@ export default function CartPage({
           >
             <Image
               src={item.image}
-              alt={locale === "ar" ? item.name_ar : item.name_en}
+              alt={
+                locale === "ar"
+                  ? item.name_ar
+                  : item.name_en
+              }
+              loading="lazy"
               width={80}
               height={80}
+            
               className="rounded-md object-cover"
             />
 
             <div className="flex-1">
               <h2 className="font-medium">
-                {locale === "ar" ? item.name_ar : item.name_en}
+                {locale === "ar"
+                  ? item.name_ar
+                  : item.name_en}
               </h2>
 
               <p className="text-sm text-muted-foreground">
@@ -74,7 +84,8 @@ export default function CartPage({
                   onClick={() =>
                     updateQuantity(item.id, item.quantity - 1)
                   }
-                  className="px-2 border rounded"
+                  className="rounded border px-2"
+                  aria-label={t("decrease")}
                 >
                   −
                 </button>
@@ -85,7 +96,8 @@ export default function CartPage({
                   onClick={() =>
                     updateQuantity(item.id, item.quantity + 1)
                   }
-                  className="px-2 border rounded"
+                  className="rounded border px-2"
+                  aria-label={t("increase")}
                 >
                   +
                 </button>
@@ -94,26 +106,25 @@ export default function CartPage({
 
             <button
               onClick={() => removeFromCart(item.id)}
-              className="text-sm text-red-500 hover:underline px-4"
+              className="px-4 text-sm text-red-500 hover:underline"
             >
-              {locale === "ar" ? "حذف" : "Remove"}
+              {t("remove")}
             </button>
           </div>
         ))}
       </div>
 
-      <div className="mt-10 flex justify-between items-center">
-        <p className="text-xl font-semibold px-4">
-          {locale === "ar" ? "الإجمالي:" : "Subtotal:"} $
-          {subtotal.toFixed(2)}
+      <div className="mt-10 flex items-center justify-between px-4">
+        <p className="text-xl font-semibold">
+          {t("subtotal")}: ${subtotal.toFixed(2)}
         </p>
-      <Link  href="/checkout"
-        aria-label="Checkout">
-        <button
+
+        <Link
+          href={`/${locale}/checkout`}
+          aria-label="Checkout"
           className="rounded-md bg-primary px-6 py-3 text-white hover:opacity-90"
         >
-          {locale === "ar" ? "إتمام الشراء" : "Checkout"}
-        </button>
+          {t("checkout")}
         </Link>
       </div>
     </section>

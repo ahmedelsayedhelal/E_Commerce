@@ -4,28 +4,30 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 type Props = {
   locale: string;
 };
 
 export function ContactForm({ locale }: Props) {
+  const t = useTranslations("contactform")
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const schema = z.object({
     name: z
       .string()
-      .min(3, locale === "ar" ? "الاسم قصير جدًا" : "Name is too short"),
+      .min(3, t("name")),
 
     email: z
       .string()
-      .email(locale === "ar" ? "بريد إلكتروني غير صالح" : "Invalid email"),
+      .email(t("email")),
 
     message: z
       .string()
       .min(
         10,
-        locale === "ar"
-          ? "الرسالة قصيرة جدًا"
-          : "Message must be at least 10 characters"
+        t("message")
       ),
   });
 
@@ -40,20 +42,20 @@ export function ContactForm({ locale }: Props) {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = async (data: FormData) => {
+     setIsSubmitting(true);
+      await new Promise((res) => setTimeout(res, 800));
     console.log(data);
 
     toast.success(
-      locale === "ar"
-        ? "تم إرسال الرسالة بنجاح"
-        : "Message sent successfully"
+      t("submit")
     );
-
+    setIsSubmitting(false);
     reset();
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 px-4">
       <div>
         <input
           {...register("name")}
@@ -101,9 +103,10 @@ export function ContactForm({ locale }: Props) {
 
       <button
         type="submit"
+        disabled={isSubmitting}
         className="w-full bg-primary text-white py-2 rounded hover:opacity-90 transition"
       >
-        {locale === "ar" ? "إرسال" : "Send"}
+        {isSubmitting ? "Loading..." : t("submit")}
       </button>
     </form>
   );

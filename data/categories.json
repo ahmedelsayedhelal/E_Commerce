@@ -1,0 +1,10 @@
+
+
+
+
+
+[
+  { "slug": "apparel", "name_en": "Apparel", "name_ar": "ملابس" },
+  { "slug": "electronics", "name_en": "Electronics", "name_ar": "إلكترونيات" },
+  { "slug": "accessories", "name_en": "Accessories", "name_ar": "إكسسوارات" }
+]

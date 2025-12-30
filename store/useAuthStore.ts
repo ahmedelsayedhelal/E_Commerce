@@ -4,11 +4,14 @@ import { persist } from "zustand/middleware";
 type User = {
   name: string;
   email: string;
+  password: string;
 };
 
 type AuthState = {
   user: User | null;
-  login: (user: User) => void;
+  isAuthenticated: boolean;
+  register: (user: User) => void;
+  login: () => void;
   logout: () => void;
 };
 
@@ -16,10 +19,26 @@ export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
       user: null,
+      isAuthenticated: false,
 
-      login: (user) => set({ user }),
+      
+      register: (user) =>
+        set({
+          user,
+          isAuthenticated: false,
+        }),
 
-      logout: () => set({ user: null }),
+     
+      login: () =>
+        set({
+          isAuthenticated: true,
+        }),
+
+      logout: () =>
+        set({
+          user: null,
+          isAuthenticated: false,
+        }),
     }),
     {
       name: "auth-storage",

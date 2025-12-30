@@ -8,17 +8,19 @@ import { useAuthStore } from "@/store/useAuthStore";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
-export default function SignupPage() {
+export default function LoginPage() {
   const router = useRouter();
-  const registerUser = useAuthStore((s) => s.register);
+
+  const user = useAuthStore((s) => s.user);
+  const login = useAuthStore((s) => s.login);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
 
   const t = useTranslations("auth");
   const f = useTranslations("contactform");
-   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const schema = z.object({
     name: z.string().min(3, f("name")).max(12, f("longname")),
-    email: z.string().email(f("email")),
     password: z.string().min(6, f("password")),
   });
 
@@ -33,21 +35,33 @@ export default function SignupPage() {
   });
 
   const onSubmit = async (data: FormData) => {
-      setIsSubmitting(true);
-      await new Promise((res) => setTimeout(res, 800));
-    registerUser({
-      name: data.name,
-      email: data.email,
-      password: data.password,
-    });
+     setIsSubmitting(true);
 
-    router.push("/login");
+   await new Promise((res) => setTimeout(res, 800));
+    if (!user) {
+      alert("No account found, please sign up first");
+      return;
+    }
+
+    if (
+      user.name !== data.name ||
+      user.password !== data.password
+    ) {
+       
+      alert("Username or password is not valid");
+
+      
       setIsSubmitting(false);
+      return;
+    }
+    login();
+    router.push("/");
+     setIsSubmitting(false);
   };
 
   return (
     <section className="w-full px-4 py-16 md:mx-auto md:max-w-md">
-      <h1 className="mb-6 text-3xl font-bold">{t("signup")}</h1>
+      <h1 className="mb-6 text-3xl font-bold">{t("login")}</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
@@ -58,17 +72,6 @@ export default function SignupPage() {
           />
           {errors.name && (
             <p className="text-sm text-red-500">{errors.name.message}</p>
-          )}
-        </div>
-
-        <div>
-          <input
-            {...register("email")}
-            placeholder={t("email")}
-            className="w-full rounded border px-4 py-2"
-          />
-          {errors.email && (
-            <p className="text-sm text-red-500">{errors.email.message}</p>
           )}
         </div>
 
@@ -88,10 +91,10 @@ export default function SignupPage() {
 
         <button
           type="submit"
-          disabled={isSubmitting}
+           disabled={isSubmitting}
           className="w-full rounded bg-primary py-2 text-white"
         >
-          {isSubmitting ? "Loading..." : t("login")}
+      {isSubmitting ? "Loading..." : t("login")}
         </button>
       </form>
     </section>

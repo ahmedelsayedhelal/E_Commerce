@@ -5,10 +5,10 @@ import Link from "next/link";
 import { useState } from "react";
 import { WishlistButton } from "@/app/components/wishlist/WishlistButton";
 import { useShopStore } from "@/store/useShopStore";
-import type { Product } from "@/data/products";
+import type { Product } from "@/app/components/types/product";
 import { toast } from "sonner";
-import { useAuthStore } from "@/store/useAuthStore";
-import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+
 
 
 type ProductClientProps = {
@@ -24,35 +24,25 @@ export default function ProductClient({
   locale,
 }: ProductClientProps) {
   const addToCart = useShopStore((s) => s.addToCart);
+  const t = useTranslations("Products")
 
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
 
   const increaseQty = () => setQty((q) => q + 1);
   const decreaseQty = () => setQty((q) => (q > 1 ? q - 1 : 1));
-  const user = useAuthStore((s) => s.user);
-const router = useRouter();
+  
 
 
  const handleAddToCart = () => {
-  if (!user) {
-        router.push(`/signup`);
-    return;
-  }
+  
   for (let i = 0; i < qty; i++) {
     addToCart(product);
   }
 
   toast.success(
-    locale === "ar"
-      ? "تمت إضافة المنتج إلى السلة"
-      : "Product added to cart",
-    {
-      description:
-        locale === "ar"
-          ? `الكمية: ${qty}`
-          : `Quantity: ${qty}`,
-    }
+    t("added"),
+  
   );
 
   setAdded(true);
@@ -60,15 +50,17 @@ const router = useRouter();
 };
 
   const outOfStock = !product.inStock;
+  
 
   return (
     <section className="py-16 max-w-4xl mx-auto">
-      <div className="grid gap-8 md:grid-cols-2">
+      <div className="grid gap-8 md:grid-cols-2 items-center justify-center">
         <div className="relative h-96 w-full rounded-lg border p-4">
           <Image
             src={product.image}
             alt={locale === "ar" ? product.name_ar : product.name_en}
             fill
+            loading="lazy"
             className="object-contain rounded-md"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
@@ -91,7 +83,7 @@ const router = useRouter();
 
           <div className="mb-4 flex items-center gap-3">
             <span className="text-sm font-medium px-4">
-              {locale === "ar" ? "الكمية:" : "Quantity:"}
+              {t("quantity")}
             </span>
 
             <div className="flex items-center border rounded-md px-4">
@@ -126,16 +118,10 @@ const router = useRouter();
               }`}
             >
               {outOfStock
-                ? locale === "ar"
-                  ? "غير متوفر"
-                  : "Out of stock"
+                ? t("outofstock")
                 : added
-                ? locale === "ar"
-                  ? "تمت الإضافة ✓"
-                  : "Added ✓"
-                : locale === "ar"
-                ? "أضف إلى السلة"
-                : "Add to Cart"}
+                ? t("added")
+                : t("addtocart")}
             </button>
 
             <WishlistButton productId={product.id} locale={locale} />
@@ -145,11 +131,11 @@ const router = useRouter();
 
       {relatedProducts.length > 0 && (
         <div className="mt-16 px-4">
-          <h2 className="mb-6 text-2xl font-semibold">
-            {locale === "ar" ? "منتجات مشابهة" : "Related Products"}
+          <h2 className="mb-6 text-2xl font-semibold text-center">
+            {t("relatedproducts")}
           </h2>
 
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-3 justify-center">
             {relatedProducts.slice(0, 3).map((p) => (
               <Link
                 key={p.id}

@@ -1,31 +1,35 @@
 import { notFound } from "next/navigation";
-import type { Product } from "@/data/products";
 import { ProductsSort } from "@/app/components/category/ProductsSort";
+import type { Product } from "@/app/components/types/product";
 
-type Props = {
-  params: Promise <{
+type PageProps = {
+  params: Promise < {
     locale: string;
     slug: string;
   }>;
 };
 
 async function getCategoryProducts(slug: string): Promise<Product[]> {
-
-  const res = await fetch("http://localhost:3000/api/products", {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/products`,
+    { cache: "no-store" }
+  );
 
   if (!res.ok) {
     throw new Error("Failed to fetch products");
   }
 
-  const products: Product[] = await res.json();
+  const data = await res.json();
+  const products: Product[] = data.products;
 
-  return products.filter((product) => product.category === slug);
+  return products.filter(
+    (product) => product.category === slug
+  );
 }
 
-
-export default async function CategoryPage({ params }: Props) {
+export default async function CategoryPage({
+  params
+}: PageProps) {
   const { locale, slug } = await params;
 
   const products = await getCategoryProducts(slug);
@@ -36,7 +40,7 @@ export default async function CategoryPage({ params }: Props) {
 
   return (
     <section className="py-16">
-      <h1 className="mb-8 text-3xl font-bold text-center capitalize">
+      <h1 className="mb-8 text-center text-3xl font-bold capitalize">
         {slug}
       </h1>
 

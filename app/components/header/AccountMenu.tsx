@@ -5,31 +5,45 @@ import { useAuthStore } from "@/store/useAuthStore";
 import { useShopStore } from "@/store/useShopStore";
 import { useTranslations } from "next-intl";
 
-export function AccountMenu({ locale }: { locale: string }) {
+export function AccountMenu( ) {
   const user = useAuthStore((s) => s.user);
-  const clearcart = useShopStore((c)=> c.clearCart)
-  const clearwishlist = useShopStore((S)=>S.clearwishlist)
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const logout = useAuthStore((s) => s.logout);
+
+  const clearCart = useShopStore((s) => s.clearCart);
+  const clearWishlist = useShopStore((s) => s.clearwishlist);
+
   const t = useTranslations("auth");
+  const w = useTranslations("Wishlist")
 
-  const handellogout =()=>{
+  const handleLogout = () => {
     logout();
-    clearcart();
-    clearwishlist();
+    clearCart();
+    clearWishlist();
+  };
 
-  }
-
-  if (!user) {
+  
+  if (!isAuthenticated) {
     return (
-      <Link
-        href="/signup"
-        className="hover:underline whitespace-nowrap"
-      >
-        {t("signup")}
-      </Link>
+      <div className="flex items-center gap-4 whitespace-nowrap">
+        <Link
+          href={`/login`}
+          className="hover:underline"
+        >
+          {t("login")}
+        </Link>
+
+        <Link
+          href={`/signup`}
+          className="hover:underline"
+        >
+          {t("signup")}
+        </Link>
+      </div>
     );
   }
 
+  
   return (
     <div className="relative group">
       <button
@@ -41,7 +55,7 @@ export function AccountMenu({ locale }: { locale: string }) {
           whitespace-nowrap
         "
       >
-        {user.name}
+        {user?.name}
       </button>
 
       <div
@@ -49,30 +63,24 @@ export function AccountMenu({ locale }: { locale: string }) {
           absolute top-full left-1/2
           -translate-x-1/2
           z-50 mt-2 w-44
-          rounded-lg border bg-white shadow-lg
+          rounded-lg border bg-background shadow-lg
           opacity-0 invisible
           group-hover:opacity-100 group-hover:visible
           transition-all duration-150
         "
       >
         <Link
-          href={`/${locale}/wishlist`}
-          className="
-            block py-2 text-sm text-center
-            hover:bg-muted transition
-          "
+          href={`/wishlist`}
+          className="block py-2 text-sm text-center hover:bg-muted transition"
         >
-          {locale === "ar" ? "المفضلة" : "Wishlist"}
+          {w("title")}
         </Link>
 
         <button
-          onClick={handellogout}
-          className="
-            block w-full py-2 text-sm text-center
-            hover:bg-muted transition
-          "
+          onClick={handleLogout}
+          className="block w-full py-2 text-sm text-center hover:bg-muted transition"
         >
-          {locale === "ar" ? "تسجيل الخروج" : "Logout"}
+          {t("logout")}
         </button>
       </div>
     </div>

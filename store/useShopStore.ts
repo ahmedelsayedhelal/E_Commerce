@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { Product } from "@/data/products";
+import type { Product } from "@/app/components/types/product";
 
 type CartItem = Product & {
   quantity: number;
@@ -10,14 +10,14 @@ type ShopState = {
   cart: CartItem[];
   wishlist: string[];
 
-  // Cart actions
+ 
   addToCart: (product: Product) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, qty: number) => void;
   clearCart: () => void;
   clearwishlist : ()=>void;
 
-  // Wishlist actions
+ 
   toggleWishlist: (id: string) => void;
 };
 
@@ -27,7 +27,7 @@ export const useShopStore = create<ShopState>()(
       cart: [],
       wishlist: [],
 
-      // 🛒 Add to cart
+
       addToCart: (product) => {
         const cart = get().cart;
         const existing = cart.find((item) => item.id === product.id);
