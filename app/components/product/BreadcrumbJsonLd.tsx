@@ -21,7 +21,7 @@ export default function BreadcrumbJsonLd({
       {
         "@type": "ListItem",
         position: 1,
-        name: t("Home"),
+        name: t("home"),
         item: `${baseUrl}/${locale}`,
       },
       {
