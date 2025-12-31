@@ -90,21 +90,6 @@ Performance
 
 
 
-```
-http://localhost:3000/en
-```
-
----
-
-## 🌐 Live Demo
-
-🔗 **Vercel Deployment:**
-[https://ecommercetask-tawny.vercel.app/en]
-
----
-
-
-
 👤 Author
 
 **Ahmed Elsayed**
