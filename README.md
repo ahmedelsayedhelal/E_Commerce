@@ -15,7 +15,7 @@ A modern multi-language e-commerce mini site built with **Next.js App Router**, 
 * Forms & Validation: React Hook Form + Zod
 * Internationalization: next-intl (EN / AR with RTL support)
 * SEO: Metadata API, Open Graph, Twitter Cards, JSON-LD
-* Deployment: Vercel
+
 
 ---
 
