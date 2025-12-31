@@ -7,6 +7,7 @@ import { Footer } from "../components/footer/Footer";
 import { ThemeProvider } from "../components/theme/themeprovider";
 import { Toaster } from "sonner";
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
 import "../globals.css";
 
@@ -16,11 +17,11 @@ export async function generateMetadata(
   const { locale } = await params;
   const isAr = locale === "ar";
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL!;
+  const t = await getTranslations("metadatalayout")
 
-  const titleDefault = isAr ? "المتجر الإلكتروني" : "Online Store";
-  const description = isAr
-    ? "أفضل متجر إلكتروني لشراء المنتجات بأفضل الأسعار"
-    : "The best online store to buy products at the best prices";
+  const titleDefault = t("title");
+  const description = t("description")
+   
 
   return {
     title: {

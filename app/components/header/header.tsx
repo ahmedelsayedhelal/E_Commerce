@@ -116,7 +116,7 @@ export function Header() {
               </button>
 
               {openCategories && (
-                   <ul className="mt-4 flex flex-col gap-3">
+               <ul className="mt-4 flex flex-col gap-3">
                < li>
             <Link href={`/${locale}/category/electronics`} onClick={() => setOpen(false)}>
            {c("electronics")}

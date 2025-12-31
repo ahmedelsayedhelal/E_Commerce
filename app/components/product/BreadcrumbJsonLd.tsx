@@ -1,5 +1,6 @@
 import Script from "next/script";
 import type { Product } from "@/app/components/types/product"
+import { useTranslations } from "next-intl";
 
 type Props = {
   locale: string;
@@ -11,6 +12,7 @@ export default function BreadcrumbJsonLd({
   product,
 }: Props) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const t = useTranslations("Header");
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -19,7 +21,7 @@ export default function BreadcrumbJsonLd({
       {
         "@type": "ListItem",
         position: 1,
-        name: locale === "ar" ? "الرئيسية" : "Home",
+        name: t("Home"),
         item: `${baseUrl}/${locale}`,
       },
       {

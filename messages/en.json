@@ -140,7 +140,8 @@
     "description":"Shop the latest products at the best prices"
   },
   "metadatalayout":{
-    "title" : ""
+    "title" : "Online Store",
+    "description" : "A modern multi-language e-commerce experience."
   }
 
   }
