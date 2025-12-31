@@ -11,7 +11,7 @@ type PageProps = {
 
 async function getCategoryProducts(slug: string): Promise<Product[]> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SITE_URL}/api/product`,
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/products`,
     { cache: "no-store" }
   );
 
