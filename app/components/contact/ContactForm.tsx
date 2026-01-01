@@ -53,7 +53,7 @@ export function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 px-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
       <div>
         <input
           {...register("name")}

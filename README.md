@@ -74,7 +74,7 @@ Performance
 # Lighthouse Scores
 
 # Desktop
-[Lighthouse Desktop](./docs/lighthouse/lighthouse-desktop.png)
+[Lighthouse Desktop](./docs/lighthouse/%20lighthouse-desktop.png)
 
 ### Mobile
 [Lighthouse Mobile](./docs/lighthouse/lighthouse-mobile.png)

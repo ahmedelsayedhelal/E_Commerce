@@ -9,8 +9,8 @@ export default function ContactPage() {
   const t = useTranslations("contact")
 
   return (
-    <section className="max-w-md mx-auto py-16">
-      <h1 className="mb-6 text-3xl font-bold px-4">
+    <section className="w-full px-4 py-16 md:mx-auto md:max-w-md">
+      <h1 className="mb-6 text-3xl font-bold ">
         {t("contact")}
       </h1>
 
