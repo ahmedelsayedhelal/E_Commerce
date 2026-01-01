@@ -11,7 +11,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-3 items-center justify-between md:items-start">
           
           <div>
-            <h2 className="text-xl font-bold">E-Shop</h2>
+            <h2 className="text-xl font-bold">{t("head")}</h2>
             <p className="mt-3 text-sm text-muted-foreground max-w-xs">
               {t("description")}
             </p>
