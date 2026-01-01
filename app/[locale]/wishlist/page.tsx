@@ -25,7 +25,7 @@ export default function WishlistPage({ params }: Props) {
 
   useEffect(() => {
     async function fetchProducts() {
-      const res = await fetch("/api/product");
+      const res = await fetch("/api/products");
       if (!res.ok) return;
 
       const data = await res.json();
